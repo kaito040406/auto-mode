@@ -9,9 +9,11 @@ import oandapyV20.endpoints.positions as positions
 accountID = "101-009-12442824-001"
 access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff31'
 
-def order(now_price, sta):
-  profit = float('{:.2g}'.format(now_price)) + 0.7
-  losscut = float('{:.2g}'.format(now_price)) - 0.7
+def order(now_price):
+  profit = float(now_price) + 0.10
+  losscut = float(now_price) - 0.08
+  profit_round = round(profit, 2)
+  losscut_round = round(losscut, 2)
   api = API(access_token=access_token, environment="practice")
   params = { "instruments": "EUR_USD,EUR_JPY,USD_JPY" }
   r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)
@@ -25,31 +27,29 @@ def order(now_price, sta):
         "positionFill": "DEFAULT"
       }
   }
-  r = orders.OrderCreate(accountID, data=data)
-  api.request(r)
+  a = orders.OrderCreate(accountID, data=data)
+  api.request(a)
 
   data = {
     "order": {
-      "price" : profit,
+      "price" : str(profit_round),
       "instrument": "USD_JPY",
       "units": "-5000",
       "type": "LIMIT",
       "positionFill": "DEFAULT"
     }
   }
-  r = orders.OrderCreate(accountID, data=data)
-  api.request(r)
+  l = orders.OrderCreate(accountID, data=data)
+  api.request(l)
 
   data = {
     "order": {
-      "price" : losscut,
+      "price" : str(losscut_round),
       "instrument": "USD_JPY",
       "units": "-5000",
       "type": "LIMIT",
       "positionFill": "DEFAULT"
     }
   }
-  r = orders.OrderCreate(accountID, data=data)
-  api.request(r)
-
-  sta = long_position
+  p = orders.OrderCreate(accountID, data=data)
+  api.request(p)

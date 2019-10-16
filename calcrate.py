@@ -11,36 +11,36 @@ import long
 import short
 
 def cal():
-  sum = 0
-  data = pd.read_csv('test.csv', header = None, names=['o','h','i','c'])
-  min = data['c'][-2]
-  max = data['c'][-2]
-  now = data['c'][-1]
-  for i in range(2, 201):
-    sum = sum + float(data['c'][-i])
+  data2 = pd.read_csv('test.csv', header = None, names=['o','h','i','c'])
+  now = data2['c'][-1]
+  min_val = now
+  max_val = now
+  for i in range(50):
+    if float(min_val) > float(data2['c'][-i-1]):
+      min_val = float(data2['c'][-i-1])
+    if float(max_val) < float(data2['c'][-i-1]):
+      max_val = float(data2['c'][-i-1])
+  i = 0;
+      
 
-    if min > data['c'][-i+1]:
-      min = data['c'][-i+1]
+  print("  最大値は" + str(max_val))
+  print("  最小値は" + str(min_val))
+  print("  現在値は" + str(now))
+  #print("  現在値は" + now)
 
-    if max < data['c'][-i+1]:
-      max = data['c'][-i+1]
-
-  ave = float(sum)/199
-
-
-  if now > max:
-    print("買います")
+  if float(now) >= float(max_val):
+    print("    買います")
     long.order(now)
     position_sta = "long_position"
     return position_sta
-  elif now < min:
-    print("売ります")
+  elif float(now) <= float(min_val):
+    print("    売ります")
     short.order(now)
     position_sta = "short_position"
     return position_sta
-  print("変化なし")
-
-  return NULL
+  print("    変化なし")
+  val = 'NULL'
+  return val
 
     
 

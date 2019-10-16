@@ -10,7 +10,6 @@ import oandapyV20.endpoints.orders as orders
 from oandapyV20.exceptions import V20Error
 from oandapyV20.endpoints.pricing import PricingStream
 import oandapyV20.endpoints.accounts as accounts
-import moniter
 import oandapyV20.endpoints.positions as positions
 import loging
 import calcrate
@@ -19,12 +18,17 @@ import short
 
 
 
-accountID = "py701079"
+accountID = "101-009-12442824-001"
 access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff31'
+
+
+
+
+
 api = API(access_token = access_token)
 params = {
-  "count": 500,
-  "granularity": "M1"
+  "count": 100,
+  "granularity": "S5"
 }
 r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)
 api.request(r)
@@ -43,31 +47,42 @@ rate.head()
 rate.to_csv('test.csv')
 value = 1
 
-
-st_per = NULL;
-i = 0;
+print("       初期データ読み込み完了")
+st_per = 'NULL';
+i = 1;
 running = 1;
 while running == 1:
-  if st_per == NULL:
-    st_par = calcrate.()
-    print(st_par)
-    time.sleep(60)
+  print("[STEP" + str(i) + "]")
+  if st_per == 'NULL':
+    print("       売買判断開始")
+    st_per = calcrate.cal()
+    print("       売買判断終了")
+    time.sleep(5)
   elif st_per == "long_position":
+    print("       現在longポジションを持っています")
     order = orders.OrdersPending(accountID)
     api.request(order)
     if len(order.response['orders']) == 1:
-      e_id = r.response['lastTransactionID']
-      r = orders.OrderCancel(accountID=accountID, orderID=e_id)
-      api.request(r)
-    time.sleep(60)
+      print("    決済されました")
+      print("       もう一方の予約注文をキャンセルします")
+      e_id = order.response['orders'][0]['id']
+      l = orders.OrderCancel(accountID=accountID, orderID=e_id)
+      api.request(l)
+      st_per = 'NULL'
+    time.sleep(5)
   elif st_per == "short_position":
+    print("       現在shortポジションを持っています")
     order = orders.OrdersPending(accountID)
     api.request(order)
     if len(order.response['orders']) == 1:
-      e_id = r.response['lastTransactionID']
-      r = orders.OrderCancel(accountID=accountID, orderID=e_id)
-      api.request(r)
-    time.sleep(60)
+      print("    決済されました")
+      print("       もう一方の予約注文をキャンセルします")
+      e_id = order.response['orders'][0]['id']
+      l = orders.OrderCancel(accountID=accountID, orderID=e_id)
+      api.request(l)
+      st_per = 'NULL'
+    time.sleep(5)
   else:
     pass
+  loging.update()
   i = i+1;

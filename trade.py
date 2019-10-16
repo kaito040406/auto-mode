@@ -14,6 +14,8 @@ import moniter
 import oandapyV20.endpoints.positions as positions
 import loging
 import calcrate
+import long
+import short
 
 
 
@@ -21,7 +23,7 @@ accountID = "py701079"
 access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff31'
 api = API(access_token = access_token)
 params = {
-  "count": 1000,
+  "count": 500,
   "granularity": "M1"
 }
 r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)
@@ -47,11 +49,25 @@ i = 0;
 running = 1;
 while running == 1:
   if st_per == NULL:
-    calcrate.
+    st_par = calcrate.()
+    print(st_par)
     time.sleep(60)
-    st_par = loging.update()
-  elif st_per == 'long_position'
+  elif st_per == "long_position":
+    order = orders.OrdersPending(accountID)
+    api.request(order)
+    if len(order.response['orders']) == 1:
+      e_id = r.response['lastTransactionID']
+      r = orders.OrderCancel(accountID=accountID, orderID=e_id)
+      api.request(r)
     time.sleep(60)
-    
-
+  elif st_per == "short_position":
+    order = orders.OrdersPending(accountID)
+    api.request(order)
+    if len(order.response['orders']) == 1:
+      e_id = r.response['lastTransactionID']
+      r = orders.OrderCancel(accountID=accountID, orderID=e_id)
+      api.request(r)
+    time.sleep(60)
+  else:
+    pass
   i = i+1;

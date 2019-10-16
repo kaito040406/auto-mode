@@ -30,11 +30,13 @@ def cal():
 
   if now > max:
     print("買います")
-    position_sta = long.order(now, sta)
+    long.order(now)
+    position_sta = "long_position"
     return position_sta
   elif now < min:
     print("売ります")
-    position_sta = short.order(now, sta)
+    short.order(now)
+    position_sta = "short_position"
     return position_sta
   print("変化なし")
 

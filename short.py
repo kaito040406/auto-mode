@@ -9,7 +9,7 @@ import oandapyV20.endpoints.positions as positions
 accountID = "101-009-12442824-001"
 access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff31'
 
-def order(now_price, sta):
+def order(now_price):
   profit = float('{:.2g}'.format(now_price)) - 0.7
   losscut = float('{:.2g}'.format(now_price)) + 0.7
   api = API(access_token=access_token, environment="practice")
@@ -45,11 +45,9 @@ def order(now_price, sta):
       "price" : losscut,
       "instrument": "USD_JPY",
       "units": "+5000",
-      "type": "LIMIT",
+      "type": "STOP",
       "positionFill": "DEFAULT"
     }
   }
   r = orders.OrderCreate(accountID, data=data)
   api.request(r)
-
-  sta = short_position

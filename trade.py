@@ -12,6 +12,8 @@ from oandapyV20.endpoints.pricing import PricingStream
 import oandapyV20.endpoints.accounts as accounts
 import moniter
 import oandapyV20.endpoints.positions as positions
+import loging
+import calcrate
 
 
 
@@ -40,36 +42,16 @@ rate.to_csv('test.csv')
 value = 1
 
 
-
+st_per = NULL;
 i = 0;
 running = 1;
 while running == 1:
-  
-  time.sleep(60)
-  api = API(access_token=access_token, environment="practice")
-  params = {
-      "count": 1,
-      "granularity": "M1"
-  }
-  r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)
-  api.request(r)
-  data = []
-  for raw in r.response['candles']:
-      data.append([raw['time'], raw['volume'], raw['mid']['o'], raw['mid']['h'], raw['mid']['l'], raw['mid']['c']])
-  df = pd.DataFrame(data)
-  moniter.cal(raw['mid']['o'], raw['mid']['h'], raw['mid']['l'], raw['mid']['c'], i)
-  df.columns = ['time', 'volume', 'open', 'high', 'low', 'close']
-  df = df.set_index('time')
-  df.index = pd.to_datetime(df.index)
-  b = positions.PositionList(accountID=accountID)
-  
+  if st_per == NULL:
+    calcrate.
+    time.sleep(60)
+    st_par = loging.update()
+  elif st_per == 'long_position'
+    time.sleep(60)
+    
 
-  positions = oanda.get_positions(account_id)
-  
-  now_value = api.request(b)
-  print(now_value ['positions'][0]['financing'])
-
-  #print(df.tail())
-  #api.request(r)
-  
   i = i+1;

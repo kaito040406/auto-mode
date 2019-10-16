@@ -12,10 +12,7 @@ import time
 
 accountID = "py701079"
 access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff31'
-
 api = API(access_token = access_token)
-
-
 def update():
   params = {
     "count": 1,

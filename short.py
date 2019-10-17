@@ -9,11 +9,13 @@ import oandapyV20.endpoints.positions as positions
 accountID = "101-009-12442824-001"
 access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff31'
 
-def order(now_price):
-  profit = float(now_price) - 0.08
-  losscut = float(now_price) + 0.10
-  profit_round = round(profit, 2)
-  losscut_round = round(losscut, 2)
+def order(now_price, profit_trans, losscut_trans):
+  profit = float(now_price) - profit_trans
+  losscut = float(now_price) + losscut_trans
+  profit_round = round(profit, 3)
+  losscut_round = round(losscut, 3)
+  print("利確は" + str(profit_round))
+  print("損切は" + str(losscut_round))
   api = API(access_token=access_token, environment="practice")
   params = { "instruments": "USD_JPY" }
   r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)

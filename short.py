@@ -12,8 +12,8 @@ access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff3
 def order(now_price, profit_trans, losscut_trans):
   profit = float(now_price) - profit_trans
   losscut = float(now_price) + losscut_trans
-  profit_round = round(profit, 3)
-  losscut_round = round(losscut, 3)
+  profit_round = round(profit, 4)
+  losscut_round = round(losscut, 4)
   print("利確は" + str(profit_round))
   print("損切は" + str(losscut_round))
   api = API(access_token=access_token, environment="practice")

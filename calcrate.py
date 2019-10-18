@@ -24,16 +24,16 @@ def cal():
   sum_x = 0
   sum_y = 0
 
-  for i in range(1,71):
+  for i in range(1,31):
     sum_x = sum_x + i
     sum_y = sum_y + float(data2['c'][-i])
 
-  ave_x = sum_x / 70
-  ave_y = sum_y / 70
+  ave_x = sum_x / 30
+  ave_y = sum_y / 30
 
-  for i in range(1,71):
-    under_cal = (i - ave_x) * (i - ave_x)
-    upper_cal = (i - ave_x) * (float(data2['c'][-i]) - ave_y)
+  for i in range(1,31):
+    under_cal = ((-i) - ave_x) * ((-i) - ave_x)
+    upper_cal = ((-i) - ave_x) * (float(data2['c'][-i]) - ave_y)
     under = under + under_cal
     upper = upper + upper_cal
     under_cal = 0
@@ -66,7 +66,7 @@ def cal():
   else:
     min_val = now
     max_val = now
-    for j in range(2,150):
+    for j in range(2,40):
       if float(min_val) > float(data2['c'][-j-1]):
         min_val = float(data2['c'][-j-1])
       if float(max_val) < float(data2['c'][-j-1]):
@@ -79,14 +79,18 @@ def cal():
       print("現在上昇トレンドです")
       if float(now) >= float(max_val):
         print("    買います")
-        long.order(now, 0.008, 0.005)
+        pr = 0.010
+        lo = 0.008
+        long.order(now, pr, lo)
         position_sta = "long_position"
         return position_sta
     elif coefficient < 0:
       print("現在下降トレンドです")
       if float(now) <= float(min_val):
         print("    売ります")
-        short.order(now, 0.008, 0.005)
+        pr = 0.010
+        lo = 0.008
+        short.order(now, pr, lo)
         position_sta = "short_position"
         return position_sta
 

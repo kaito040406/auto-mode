@@ -43,6 +43,12 @@ def cal():
   
   print("   係数は:" + str(coefficient))
 
+  #標準偏差算出始まり
+  
+
+
+  #標準偏差算出終わり
+
   #スキャルピング?モードはじまり 
   if float(o_c) >= 0.02 or float(o_c) <= -0.02:
     if float(o_c) >= 0.02:
@@ -66,7 +72,7 @@ def cal():
   else:
     min_val = now
     max_val = now
-    for j in range(2,40):
+    for j in range(2,20):
       if float(min_val) > float(data2['c'][-j-1]):
         min_val = float(data2['c'][-j-1])
       if float(max_val) < float(data2['c'][-j-1]):
@@ -77,22 +83,45 @@ def cal():
     #print("  現在値は" + now)
     if coefficient > 0:
       print("現在上昇トレンドです")
-      if float(now) >= float(max_val):
+      #if float(now) >= float(max_val):
+      if float(o_c) >=-0.004:
         print("    買います")
-        pr = 0.010
+        pr = 0.008
         lo = 0.008
         long.order(now, pr, lo)
         position_sta = "long_position"
         return position_sta
-    elif coefficient < 0:
-      print("現在下降トレンドです")
-      if float(now) <= float(min_val):
+        #val = 'NULL'
+        #return val
+      elif float(o_c) <= -0.004:
         print("    売ります")
-        pr = 0.010
+        pr = 0.008
         lo = 0.008
         short.order(now, pr, lo)
         position_sta = "short_position"
         return position_sta
+        
+    elif coefficient < 0:
+      print("現在下降トレンドです")
+      #if float(now) <= float(min_val):
+      if float(o_c) >= 0.004:
+        print("    売ります")
+        pr = 0.008
+        lo = 0.008
+        short.order(now, pr, lo)
+        position_sta = "short_position"
+        return position_sta
+        #val = 'NULL'
+        #return val
+      elif float(o_c) <= -0.004:
+        print("    買います")
+        pr = 0.008
+        lo = 0.008
+        long.order(now, pr, lo)
+        position_sta = "long_position"
+        return position_sta
+        #val = 'NULL'
+        #return val
 
   print("    今は売買しません")
   val = 'NULL'

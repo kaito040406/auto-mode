@@ -27,7 +27,7 @@ access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff3
 
 api = API(access_token = access_token)
 params = {
-  "count": 2000,
+  "count": 2300,
   "granularity": "S5"
 }
 r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)

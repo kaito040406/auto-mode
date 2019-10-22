@@ -43,11 +43,44 @@ def cal():
   
   print("   係数は:" + str(coefficient))
 
+
   #標準偏差算出始まり
+  p = 0;
+  m = 0;
+  sum_pulas = 0;
+  sum_mainasu = 0;
+  delta = [];
+  dt_sum = 0;
+  for i in range(0, 2200):
+    delta[i] = float(data2['c'][-i-1])-flat(data2['c'][-i-2])
+    if delta[i] > 0:
+      p = p + 1
+      sum_pulas = sum_pulas + float(data2['c'][-i])
+    
+    elif delta[i] < 0:
+      m = m + 1
+      sum_mainasu = sum_mainasu + float(data2['c'][-i])
+      delta[i] = delta[i] * (-1)
+    dt_sum = dt_sum + delta[i];
+
+  ave_puras = sum_pulas / p;
+  ave_y = sum_y / m;
+  ave_dt = dtsum / 2200;
+
+  for i in range(0,2200):
+    under_cal = ((-i) - ave_x) * ((-i) - ave_x)
+    upper_cal = ((-i) - ave_x) * (float(data2['c'][-i]) - ave_y)
+    under = under + under_cal
+    upper = upper + upper_cal
+    under_cal = 0
+    upper_cal = 0
+
+  coefficient = upper / under 
   
-
-
+  print("   係数は:" + str(coefficient))
   #標準偏差算出終わり
+
+
 
   #スキャルピング?モードはじまり 
   if float(o_c) >= 0.02 or float(o_c) <= -0.02:

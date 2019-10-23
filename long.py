@@ -17,7 +17,7 @@ def order(now_price, profit_trans, losscut_trans):
   print("利確は" + str(profit_round))
   print("損切は" + str(losscut_round))
   api = API(access_token=access_token, environment="practice")
-  params = { "instruments": "EUR_USD,EUR_JPY,USD_JPY" }
+  params = { "instruments": "USD_JPY" }
   r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)
   api.request(r)
 

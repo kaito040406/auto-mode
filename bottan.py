@@ -1,3 +1,0 @@
-<Label>
-    text: "Hello World!"
-

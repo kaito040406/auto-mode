@@ -53,6 +53,8 @@ i = 1;
 running = 1;
 while running == 1:
   print("[STEP" + str(i) + "]")
+  dt_now = datetime.datetime.now()
+  print(dt_now)
   if st_per == 'NULL':
     print("       売買判断開始")
     st_per = calcrate.cal()
@@ -60,12 +62,12 @@ while running == 1:
     time.sleep(5)
   elif st_per == "long_position":
     print("       現在longポジションを持っています")
-    order = orders.OrdersPending(accountID)
-    api.request(order)
-    if len(order.response['orders']) == 1:
+    order_long = orders.OrdersPending(accountID)
+    api.request(order_long)
+    if len(order_long.response['orders']) <= 1:
       print("    決済されました")
       print("       もう一方の予約注文をキャンセルします")
-      e_id = order.response['orders'][0]['id']
+      e_id = order_long.response['orders'][0]['id']
       l = orders.OrderCancel(accountID=accountID, orderID=e_id)
       api.request(l)
       st_per = 'NULL'
@@ -74,7 +76,7 @@ while running == 1:
     print("       現在shortポジションを持っています")
     order = orders.OrdersPending(accountID)
     api.request(order)
-    if len(order.response['orders']) == 1:
+    if len(order.response['orders']) <= 1:
       print("    決済されました")
       print("       もう一方の予約注文をキャンセルします")
       e_id = order.response['orders'][0]['id']
@@ -82,7 +84,6 @@ while running == 1:
       api.request(l)
       st_per = 'NULL'
     time.sleep(5)
-  else:
-    pass
+    
   loging.update()
   i = i+1;

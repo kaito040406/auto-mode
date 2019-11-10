@@ -29,8 +29,8 @@ def order(now_price, profit_trans, losscut_trans):
         "positionFill": "DEFAULT"
       }
   }
-  a = orders.OrderCreate(accountID, data=data)
-  api.request(a)
+  n = orders.OrderCreate(accountID, data=data)
+  api.request(n)
 
   data = {
     "order": {
@@ -41,8 +41,8 @@ def order(now_price, profit_trans, losscut_trans):
       "positionFill": "DEFAULT"
     }
   }
-  l = orders.OrderCreate(accountID, data=data)
-  api.request(l)
+  m = orders.OrderCreate(accountID, data=data)
+  api.request(m)
 
   data = {
     "order": {
@@ -53,5 +53,5 @@ def order(now_price, profit_trans, losscut_trans):
       "positionFill": "DEFAULT"
     }
   }
-  p = orders.OrderCreate(accountID, data=data)
-  api.request(p)
+  v = orders.OrderCreate(accountID, data=data)
+  api.request(v)

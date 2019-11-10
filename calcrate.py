@@ -195,10 +195,10 @@ def cal():
     #print("  最大値は" + str(max_val))
     #print("  最小値は" + str(min_val))
     #print("  現在値は" + now)
-    if coefficient_short > 0 and coefficient_mid > 0 and coefficient_long > 0 and float(now) > move_ave:
+    if coefficient_short > 0 and coefficient_mid > 0 and coefficient_long > 0 and float(now) > float(move_ave):
       print("現在上昇トレンドです")
       #if float(now) >= float(max_val):
-      if float(o_c) >= 0.003:
+      if float(o_c) >= 0.001:
         print("    順張り購入")
         pr = 0.013
         lo = 0.010
@@ -220,10 +220,10 @@ def cal():
         #position_sta = "short_position"
         #return position_sta
         
-    elif coefficient_short < 0 and coefficient_mid < 0 and coefficient_long < 0 and float(now) < move_ave:
+    elif coefficient_short < 0 and coefficient_mid < 0 and coefficient_long < 0 and float(now) < float(move_ave):
       print("   現在下降トレンドです")
       #if float(now) <= float(min_val):
-      if float(o_c) <= -0.003:
+      if float(o_c) <= -0.001:
         print("    順張り売却")
         pr = 0.013
         lo = 0.010
@@ -247,18 +247,18 @@ def cal():
         return val
 
     else:
-      if float(o_c) <= -2 * float(standard_deviation):
+      if float(o_c) >= 3 * float(standard_deviation):
         print("    買います")
-        pr = 0.008
-        lo = 0.008
+        pr = 0.010
+        lo = 0.015
         long.order(now_f, pr, lo)
         position_sta = "long_position"
         return position_sta
 
-      elif float(o_c) >= 2 * float(standard_deviation):
+      elif float(o_c) <= -3 * float(standard_deviation):
         print("    売ります")
-        pr = 0.008
-        lo = 0.008
+        pr = 0.010
+        lo = 0.015
         short.order(now_f, pr, lo)
         position_sta = "short_position"
         return position_sta

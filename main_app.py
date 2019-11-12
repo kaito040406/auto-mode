@@ -2,7 +2,11 @@ from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 import subprocess as sb
+from kivy.config import Config
 
+Config.set('graphics', 'width', '640')
+Config.set('graphics', 'height', '960')  
+Config.set('graphics', 'resizable', False)  
  
 class Widgets(Widget):
     def buttonClicked1(self):

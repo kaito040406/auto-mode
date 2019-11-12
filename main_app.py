@@ -3,23 +3,14 @@ from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 import subprocess as sb
 
-global bottan_st = 0
  
 class Widgets(Widget):
     def buttonClicked1(self):
-        if bottan_st == 0:
-            global tl
-            tl = sb.Popen(["python", "trade.py"])
-            global bottan_st = 1
-        else:
-            pass
+        global tl
+        tl = sb.Popen(["python", "trade.py"])
 
     def buttonClicked2(self):
-        if bottan_st == 1:
-            tl.terminate()
-            global bottan_st = 0
-        else:
-            pass
+        tl.terminate()
  
 class main(App):
     def build(self):

@@ -2,7 +2,6 @@ from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.widget import Widget
 import subprocess as sb
-import os
 
  
 class Widgets(Widget):

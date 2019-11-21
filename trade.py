@@ -28,7 +28,7 @@ access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff3
 api = API(access_token = access_token)
 params = {
   "count": 2300,
-  "granularity": "S5"
+  "granularity": "S30"
 }
 r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)
 api.request(r)
@@ -59,7 +59,7 @@ while running == 1:
     print("       売買判断開始")
     st_per = calcrate.cal()
     print("       売買判断終了")
-    time.sleep(5)
+    time.sleep(30)
   elif st_per == "long_position":
     print("       現在longポジションを持っています")
     order_long = orders.OrdersPending(accountID)
@@ -71,7 +71,7 @@ while running == 1:
       l = orders.OrderCancel(accountID=accountID, orderID=e_id)
       api.request(l)
       st_per = 'NULL'
-    time.sleep(5)
+    time.sleep(30)
   elif st_per == "short_position":
     print("       現在shortポジションを持っています")
     order = orders.OrdersPending(accountID)
@@ -83,7 +83,7 @@ while running == 1:
       l = orders.OrderCancel(accountID=accountID, orderID=e_id)
       api.request(l)
       st_per = 'NULL'
-    time.sleep(5)
+    time.sleep(30)
     
   loging.update()
   i = i+1;

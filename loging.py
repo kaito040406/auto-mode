@@ -15,9 +15,10 @@ def update():
   print("  データ更新中")
   params = {
     "count": 1,
-    "granularity": "S10"
+    "granularity": "S5"
   }
 
+  print("ok1")
   r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)
   api.request(r)
   print(api.request(r))
@@ -31,7 +32,6 @@ def update():
   rate.index = pd.to_datetime(rate.index)
   
   rate.head()
-
   with open('test.csv', 'a') as f:
     print(r.response['candles'][0]['time'] + ",", r.response['candles'][0]['mid']['o'] + "," , r.response['candles'][0]['mid']['h'] + "," , r.response['candles'][0]['mid']['l'] + ",", r.response['candles'][0]['mid']['c'] + "," , file=f)
     f.close()

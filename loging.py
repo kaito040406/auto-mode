@@ -35,6 +35,7 @@ def update():
   with open('test.csv', 'a') as f:
     print(r.response['candles'][0]['time'] + ",", r.response['candles'][0]['mid']['o'] + "," , r.response['candles'][0]['mid']['h'] + "," , r.response['candles'][0]['mid']['l'] + ",", r.response['candles'][0]['mid']['c'] + "," , file=f)
     f.close()
-
+    
+  return r.response['candles'][0]['mid']['c']
   #rate.to_csv('test.csv')
   #candle.candlechart(rate)

@@ -45,6 +45,31 @@ rate.index = pd.to_datetime(rate.index)
 rate.head()
 #candle.candlechart(rate)
 rate.to_csv('test.csv')
+
+
+
+#グラフ表示はじまり
+xdata = []
+ydata = []
+data = pd.read_csv('test.csv', header = None, names=['o','h','i','c'])
+yd = data['c']
+
+for i in range(len(yd)-1):
+  ydata.append(data['c'][i])
+  xdata.append(i+1)
+y = ydata
+x = xdata
+line, = plt.plot(x, y)
+
+plt.xlim([0,2350])
+plt.ylim([-300,300])
+plt.yticks( [0, 200, 20] )
+plt.pause(.01)
+
+#グラフ表示終わり
+
+
+
 value = 1
 
 print("       初期データ読み込み完了")
@@ -84,6 +109,25 @@ while running == 1:
       api.request(l)
       st_per = 'NULL'
     time.sleep(5)
-    
-  loging.update()
+  
+
+  last_data = loging.update()
+
+  xcount = 2300 + i
+  y.append(last_data)
+  x.append(xcount)
+
+  print(len(y))
+  print(len(x))
+  line.set_data(x,y)
+  plt.xlim([2000 + i,2350 + i])
+  plt.ylim([-300,300])
+  plt.yticks( [0, 200, 20] )
+  plt.pause(.01)
+
+
   i = i+1;
+  
+
+
+  

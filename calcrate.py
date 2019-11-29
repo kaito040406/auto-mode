@@ -200,8 +200,8 @@ def cal():
       #if float(now) >= float(max_val):
       if float(o_c) >= 0.001:
         print("    順張り購入")
-        pr = 0.013
-        lo = 0.010
+        pr = 0.020
+        lo = 0.020
         long.order(now_f, pr, lo)
         position_sta = "long_position"
         return position_sta
@@ -225,8 +225,8 @@ def cal():
       #if float(now) <= float(min_val):
       if float(o_c) <= -0.001:
         print("    順張り売却")
-        pr = 0.013
-        lo = 0.010
+        pr = 0.020
+        lo = 0.020
         short.order(now_f, pr, lo)
         position_sta = "short_position"
         return position_sta
@@ -249,16 +249,16 @@ def cal():
     else:
       if float(o_c) >= 3 * float(standard_deviation):
         print("    買います")
-        pr = 0.010
-        lo = 0.015
+        pr = 0.020
+        lo = 0.020
         long.order(now_f, pr, lo)
         position_sta = "long_position"
         return position_sta
 
       elif float(o_c) <= -3 * float(standard_deviation):
         print("    売ります")
-        pr = 0.010
-        lo = 0.015
+        pr = 0.020
+        lo = 0.020
         short.order(now_f, pr, lo)
         position_sta = "short_position"
         return position_sta

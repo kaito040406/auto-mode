@@ -28,7 +28,7 @@ access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff3
 api = API(access_token = access_token)
 params = {
   "count": 2300,
-  "granularity": "S5"
+  "granularity": "S10"
 }
 r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)
 api.request(r)
@@ -61,7 +61,7 @@ y = ydata
 x = xdata
 line, = plt.plot(x, y)
 
-plt.xlim([0,2350])
+plt.xlim([2290,2320])
 plt.ylim([-300,300])
 plt.yticks( [0, 200, 20] )
 plt.pause(.01)
@@ -84,7 +84,7 @@ while running == 1:
     print("       売買判断開始")
     st_per = calcrate.cal()
     print("       売買判断終了")
-    time.sleep(5)
+    time.sleep(10)
   elif st_per == "long_position":
     print("       現在longポジションを持っています")
     order_long = orders.OrdersPending(accountID)
@@ -96,7 +96,7 @@ while running == 1:
       l = orders.OrderCancel(accountID=accountID, orderID=e_id)
       api.request(l)
       st_per = 'NULL'
-    time.sleep(5)
+    time.sleep(10)
   elif st_per == "short_position":
     print("       現在shortポジションを持っています")
     order = orders.OrdersPending(accountID)
@@ -108,7 +108,7 @@ while running == 1:
       l = orders.OrderCancel(accountID=accountID, orderID=e_id)
       api.request(l)
       st_per = 'NULL'
-    time.sleep(5)
+    time.sleep(10)
   
 
   last_data = loging.update()
@@ -120,7 +120,7 @@ while running == 1:
   print(len(y))
   print(len(x))
   line.set_data(x,y)
-  plt.xlim([2000 + i,2350 + i])
+  plt.xlim([2290 + i,2320 + i])
   plt.ylim([-300,300])
   plt.yticks( [0, 200, 20] )
   plt.pause(.01)

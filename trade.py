@@ -61,7 +61,7 @@ y = ydata
 x = xdata
 line, = plt.plot(x, y)
 
-plt.xlim([2290,2320])
+plt.xlim([2280,2310])
 plt.ylim([-300,300])
 plt.yticks( [0, 200, 20] )
 plt.pause(.01)
@@ -120,7 +120,7 @@ while running == 1:
   print(len(y))
   print(len(x))
   line.set_data(x,y)
-  plt.xlim([2290 + i,2320 + i])
+  plt.xlim([2280 + i,2310 + i])
   plt.ylim([-300,300])
   plt.yticks( [0, 200, 20] )
   plt.pause(.01)

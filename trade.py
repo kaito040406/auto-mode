@@ -80,9 +80,10 @@ while running == 1:
 
   weekday = week_day.day()
 
-  if weekday == 'Saturday' or weekday == 'Sunday'
+  if weekday == 'Saturday' or weekday == 'Sunday':
     print("本日は相場がお休みです")
-  else
+    running = 2
+  else:
     print("[STEP" + str(i) + "]")
     dt_now = datetime.datetime.now()
     print(dt_now)
@@ -130,7 +131,7 @@ while running == 1:
     plt.ylim([-300,300])
     plt.yticks( [0, 200, 20] )
     plt.pause(.01)
-    
+
     i = i+1;
   
 

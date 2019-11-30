@@ -15,6 +15,7 @@ import loging
 import calcrate
 import long
 import short
+import week_day
 
 
 
@@ -76,56 +77,61 @@ st_per = 'NULL';
 i = 1;
 running = 1;
 while running == 1:
-  print("[STEP" + str(i) + "]")
-  dt_now = datetime.datetime.now()
-  print(dt_now)
-  if st_per == 'NULL':
-    print("       売買判断開始")
-    st_per = calcrate.cal()
-    print("       売買判断終了")
-    time.sleep(10)
-  elif st_per == "long_position":
-    print("       現在longポジションを持っています")
-    order_long = orders.OrdersPending(accountID)
-    api.request(order_long)
-    if len(order_long.response['orders']) <= 1:
-      print("    決済されました")
-      print("       もう一方の予約注文をキャンセルします")
-      e_id = order_long.response['orders'][0]['id']
-      l = orders.OrderCancel(accountID=accountID, orderID=e_id)
-      api.request(l)
-      st_per = 'NULL'
-    time.sleep(10)
-  elif st_per == "short_position":
-    print("       現在shortポジションを持っています")
-    order = orders.OrdersPending(accountID)
-    api.request(order)
-    if len(order.response['orders']) <= 1:
-      print("    決済されました")
-      print("       もう一方の予約注文をキャンセルします")
-      e_id = order.response['orders'][0]['id']
-      l = orders.OrderCancel(accountID=accountID, orderID=e_id)
-      api.request(l)
-      st_per = 'NULL'
-    time.sleep(10)
-  
 
-  last_data = loging.update()
+  weekday = week_day.day()
 
-  xcount = 2300 + i
-  y.append(last_data)
-  x.append(xcount)
+  if weekday == 'Saturday' or weekday == 'Sunday'
+    print("本日は相場がお休みです")
+  else
+    print("[STEP" + str(i) + "]")
+    dt_now = datetime.datetime.now()
+    print(dt_now)
+    if st_per == 'NULL':
+      print("       売買判断開始")
+      st_per = calcrate.cal()
+      print("       売買判断終了")
+      time.sleep(10)
+    elif st_per == "long_position":
+      print("       現在longポジションを持っています")
+      order_long = orders.OrdersPending(accountID)
+      api.request(order_long)
+      if len(order_long.response['orders']) <= 1:
+        print("    決済されました")
+        print("       もう一方の予約注文をキャンセルします")
+        e_id = order_long.response['orders'][0]['id']
+        l = orders.OrderCancel(accountID=accountID, orderID=e_id)
+        api.request(l)
+        st_per = 'NULL'
+      time.sleep(10)
+    elif st_per == "short_position":
+      print("       現在shortポジションを持っています")
+      order = orders.OrdersPending(accountID)
+      api.request(order)
+      if len(order.response['orders']) <= 1:
+        print("    決済されました")
+        print("       もう一方の予約注文をキャンセルします")
+        e_id = order.response['orders'][0]['id']
+        l = orders.OrderCancel(accountID=accountID, orderID=e_id)
+        api.request(l)
+        st_per = 'NULL'
+      time.sleep(10)
+    
 
-  print(len(y))
-  print(len(x))
-  line.set_data(x,y)
-  plt.xlim([2280 + i,2310 + i])
-  plt.ylim([-300,300])
-  plt.yticks( [0, 200, 20] )
-  plt.pause(.01)
+    last_data = loging.update()
 
+    xcount = 2300 + i
+    y.append(last_data)
+    x.append(xcount)
 
-  i = i+1;
+    print(len(y))
+    print(len(x))
+    line.set_data(x,y)
+    plt.xlim([2280 + i,2310 + i])
+    plt.ylim([-300,300])
+    plt.yticks( [0, 200, 20] )
+    plt.pause(.01)
+    
+    i = i+1;
   
 
 

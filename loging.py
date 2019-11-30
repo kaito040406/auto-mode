@@ -37,5 +37,3 @@ def update():
     f.close()
 
   return r.response['candles'][0]['mid']['c']
-  #rate.to_csv('test.csv')
-  #candle.candlechart(rate)

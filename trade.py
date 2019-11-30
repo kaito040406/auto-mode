@@ -43,7 +43,6 @@ rate = pd.DataFrame.from_dict({r.response['candles'][i]['time']: r.response['can
 
 rate.index = pd.to_datetime(rate.index)
 rate.head()
-#candle.candlechart(rate)
 rate.to_csv('test.csv')
 
 

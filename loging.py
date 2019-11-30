@@ -6,10 +6,12 @@ import datetime
 import matplotlib.dates as mdates
 from oandapyV20 import API
 import oandapyV20.endpoints.instruments as instruments
+import os
 
 
-accountID = "101-009-12442824-001"
-access_token = '0b5e9a483d41290d2f4bce8fe189cf60-b997a98f78c139397b4f87d24775ff31'
+
+accountID = os.environ.get("OANDA_ID")
+access_token = os.environ.get("OANDA_TOKEN")
 api = API(access_token = access_token)
 def update():
   print("  データ更新中")

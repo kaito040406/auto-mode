@@ -16,22 +16,22 @@ OANDA APIを用いた自動FX売買ツールです。<br>
 # Setup
 ### 1. pipを使い、以下をインストール
 
-`pip install oandapyV20<br>`
-`pip install pandas<br>`
-`pip install matplotlib<br>`
-`pip install kivy<br>`
+`pip install oandapyV20`<br>
+`pip install pandas`<br>
+`pip install matplotlib`<br>
+`pip install kivy`<br>
 
 ### 2. OANDA Japanのデモ講座を登録し、Acount IDとAcount tokenを取得する
 
 ### 3. .envに、Acount IDとAcount tokenを以下のように書き込む
-`export OANDA_ID='000-000-12345678-000'<br>`
-`export OANDA_TOKEN='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'<br>`
+`export OANDA_ID='000-000-12345678-000'`<br>
+`export OANDA_TOKEN='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'`<br>
 
 
 # Usage
 main_app.pyをターミナルから以下の様に起動させる<br>
 
-`$ python main.py<br>`
+`$ python main.py`<br>
 
 
 # References

@@ -8,7 +8,7 @@ OANDA APIを用いた自動FX売買ツールです。<br>
 短期間で、急激な相場の変動があった際、跳ね返りを予測し、アクションを起こす。<br>
 
 ### ・システムフロー図
-https://raw.github.com/wiki/kaito040406/auto-mode/images/flow.png
+https://github.com/kaito040406/auto-mode/blob/master/images/flow.png
 
 
 # Dependency
@@ -38,4 +38,4 @@ $ python main.py<br>
 参考にした情報源（サイト・論文）などの情報、リンク<br>
 https://developer.oanda.com/docs/jp/<br>
 http://unageanu.hatenablog.com/entry/2015/05/12/104942<br>
-https://nsplat.wordpress.com/2015/05/24/<br>oanda%E3%81%AE-rest-api%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6php%E3%81%8B%E3%82%89%E5%8F%A3%E5%BA%A7%E6%83%85%E5%A0%B1%E3%81%AB%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9/<br>
+https://nsplat.wordpress.com/2015/05/24/

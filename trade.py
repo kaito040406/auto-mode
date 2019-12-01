@@ -124,9 +124,6 @@ while running == 1:
     xcount = 2300 + i
     y.append(last_data)
     x.append(xcount)
-
-    print(len(y))
-    print(len(x))
     line.set_data(x,y)
     plt.xlim([2280 + i,2310 + i])
     plt.ylim([-300,300])

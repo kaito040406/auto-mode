@@ -23,7 +23,6 @@ def update():
   print("ok1")
   r = instruments.InstrumentsCandles(instrument="USD_JPY", params=params)
   api.request(r)
-  print(api.request(r))
   r.response['candles'][0]
 
   rate = pd.DataFrame.from_dict({r.response['candles'][i]['time']: r.response['candles'][i]['mid']

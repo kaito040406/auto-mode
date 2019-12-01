@@ -1,8 +1,8 @@
 # auto-mode
-###OANDA APIを用いた自動FX売買ツールです。
-###10秒間隔で終値を取得し、そのデータをもとに売買を行うシステムです。
-###10秒に一度、データを更新させ計算を行わせる。
-###・用いた理論
+### OANDA APIを用いた自動FX売買ツールです。
+### 10秒間隔で終値を取得し、そのデータをもとに売買を行うシステムです。  
+### 10秒に一度、データを更新させ計算を行わせる。  
+### ・用いた理論
 短期中期長期で、近似直線の傾きを算出させ、その傾きが一致した際にアクションを起こす
 短期間で、急激な相場の変動があった際、跳ね返りを予測し、アクションを起こす。
 
@@ -13,15 +13,15 @@
 言語 python 3.7.4
 
 # Setup
-###1. pipを使い、以下をインストール
+### 1. pipを使い、以下をインストール
 pip install oandapyV20
 pip install pandas
 pip install matplotlib
 pip install kivy
 
-###2. OANDA Japanのデモ講座を登録し、Acount IDとAcount tokenを取得する
+### 2. OANDA Japanのデモ講座を登録し、Acount IDとAcount tokenを取得する
 
-###3. .envに、Acount IDとAcount tokenを以下のように書き込む
+### 3. .envに、Acount IDとAcount tokenを以下のように書き込む
 export OANDA_ID='000-000-12345678-000'
 export OANDA_TOKEN='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 

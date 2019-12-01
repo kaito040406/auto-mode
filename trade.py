@@ -17,9 +17,10 @@ import long
 import short
 import week_day
 import os
+import aa
 
 
-
+aa.art()
 accountID = os.environ.get("OANDA_ID")
 access_token = os.environ.get("OANDA_TOKEN")
 
